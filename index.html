@@ -624,41 +624,30 @@
       </div>
     </section>
 
-    <!-- ФОРМА ОБРАТНОЙ СВЯЗИ (FormSubmit.co) -->
+    <!-- ФОРМА ОБРАТНОЙ СВЯЗИ (TELEGRAM) -->
     <section class="section contact" id="contact">
       <div class="container">
         <h2 class="section__title fade-in">Запрос на проектирование или консультацию</h2>
         <p class="section__subtitle fade-in">Оставьте контактные данные. Инженер свяжется с вами в течение 15 минут для уточнения параметров объекта.</p>
         <div class="contact__wrapper fade-in">
           
-          <!-- Форма отправляет данные на FormSubmit.co → ваша почта sssubarik666@mail.ru -->
-          <form class="contact__form" id="contactForm" action="https://formsubmit.co/sssubarik666@mail.ru" method="POST">
-            
-            <!-- === НАСТРОЙКИ FORMSUBMIT (не удалять) === -->
-            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_subject" value="🔔 Новая заявка с сайта ВеТви">
-            <input type="hidden" name="_next" value="https://masalceva91-blip.github.io/vetvi-site/">
-            <input type="hidden" name="_autoresponse" value="Спасибо! Ваша заявка принята. Инженер свяжется с вами в течение 15 минут.">
-            <!-- === КОНЕЦ НАСТРОЕК === -->
-
+          <form class="contact__form" id="contactForm">
             <div class="form-group">
               <label for="name">ФИО</label>
-              <input type="text" id="name" name="Имя" placeholder="Иванов Иван Иванович" required autocomplete="name">
+              <input type="text" id="name" name="name" placeholder="Иванов Иван Иванович" required autocomplete="name">
             </div>
             <div class="form-group">
               <label for="phone">Контактный телефон</label>
-              <input type="tel" id="phone" name="Телефон" placeholder="+7 (___) ___-__-__" required autocomplete="tel">
+              <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required autocomplete="tel">
             </div>
             <div class="form-group">
               <label for="message">Комментарий <span style="opacity:0.5">(необязательно)</span></label>
-              <textarea id="message" name="Сообщение" placeholder="Площадь участка, район республики, тип растений…" rows="4"></textarea>
+              <textarea id="message" name="message" placeholder="Площадь участка, район республики, тип растений…" rows="4"></textarea>
             </div>
             <button type="submit" class="btn btn--primary" id="submitBtn">Отправить запрос</button>
             <p class="contact__privacy">🔒 Данные защищены и используются исключительно для обработки заявки</p>
           </form>
 
-          <!-- Сообщение об успехе (показывается после отправки) -->
           <div class="form-success" id="formSuccess">
             <div class="form-success__icon">✅</div>
             <h3 class="form-success__title">Запрос принят</h3>
@@ -711,6 +700,7 @@
 
   <!-- JAVASCRIPT -->
   <script>
+    // 1. Управление мобильным меню
     const burger = document.getElementById('burger');
     const nav = document.getElementById('nav');
     burger.addEventListener('click', () => {
@@ -726,6 +716,7 @@
       });
     });
 
+    // 2. Плавная прокрутка
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         const target = document.querySelector(this.getAttribute('href'));
@@ -736,6 +727,7 @@
       });
     });
 
+    // 3. Анимация появления при скролле
     const fadeEls = document.querySelectorAll('.fade-in');
     if ('IntersectionObserver' in window) {
       const observer = new IntersectionObserver(entries => {
@@ -749,14 +741,53 @@
       fadeEls.forEach(el => observer.observe(el));
     } else { fadeEls.forEach(el => el.classList.add('visible')); }
 
-    // Обработка формы - FormSubmit обрабатывает сам, этот код для показа сообщения
-    const form = document.getElementById('contactForm');
-    const btn = document.getElementById('submitBtn');
-    const success = document.getElementById('formSuccess');
-    
-    // FormSubmit сам обрабатывает отправку, мы только показываем сообщение
-    // После успешной отправки FormSubmit перенаправит на _next или покажет autoresponse
-    
+    // 4. Отправка формы в Telegram
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const btn = document.getElementById('submitBtn');
+      const originalText = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Отправка…';
+      
+      // Данные вашего бота и чата
+      const BOT_TOKEN = '8868307784:AAFHEkWeO4rfpliAXAjEHP0Eb9WiADgLu34';
+      const CHAT_ID = '1062954957';
+      
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const message = document.getElementById('message').value.trim();
+      
+      const text = `🔔 <b>Новая заявка с сайта ВеТви!</b>\n\n👤 <b>Имя:</b> ${name}\n📱 <b>Телефон:</b> ${phone}\n💬 <b>Сообщение:</b> ${message || '—'}`;
+      
+      try {
+        const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text: text,
+            parse_mode: 'HTML'
+          })
+        });
+        
+        const data = await response.json();
+        
+        if (data.ok) {
+          document.querySelector('.contact__form').style.display = 'none';
+          document.getElementById('formSuccess').style.display = 'block';
+          this.reset();
+        } else {
+          alert('Ошибка Telegram: ' + (data.description || 'Попробуйте позже.'));
+          btn.disabled = false;
+          btn.textContent = originalText;
+        }
+      } catch (error) {
+        alert('Нет соединения с интернетом. Проверьте сеть.');
+        btn.disabled = false;
+        btn.textContent = originalText;
+      }
+    });
   </script>
 </body>
 </html>
