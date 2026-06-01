@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Проектирование, монтаж и обслуживание систем автополива в Удмуртской Республике. ВеТви — инженерный подход к орошению.">
+  <meta name="keywords" content="автополив Удмуртия, монтаж систем полива Ижевск, проектирование автополива, ВеТви, капельное орошение">
+  <meta name="author" content="ВеТви">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#00897B">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Автоматические системы полива в Удмуртии | ВеТви">
+  <meta property="og:description" content="Проектируем и монтируем системы автоматического полива «под ключ». Гарантия 3 года.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vetvi-udmurtia.ru">
+  <meta property="og:image" content="https://vetvi-udmurtia.ru/images/og-cover.jpg">
+  <meta property="og:locale" content="ru_RU">
+
+  <title>Автоматические системы полива в Удмуртии | ВеТви</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- JSON-LD разметка -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "ВеТви",
+    "description": "Проектирование, монтаж и обслуживание систем автоматического полива в Удмуртии.",
+    "url": "https://vetvi-udmurtia.ru",
+    "telephone": "+79225086377",
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "Удмуртская Республика",
+      "addressCountry": "RU"
+    },
+    "openingHours": "Mo-Fr 09:00-18:00",
+    "priceRange": "$$"
+  }
+  </script>
+
+  <style>
+    /* ============================================
+       CSS-ПЕРЕМЕННЫЕ И БАЗОВЫЕ НАСТРОЙКИ
+       ============================================ */
+    :root {
+      --color-primary: #00695C;
+      --color-primary-light: #00897B;
+      --color-accent: #F57C00;
+      --color-accent-hover: #E65100;
+      --color-bg-light: #F4F6F5;
+      --color-bg-white: #FFFFFF;
+      --color-text-dark: #111827;
+      --color-text-medium: #4B5563;
+      --color-text-light: #6B7280;
+      --color-border: #E5E7EB;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+      --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --max-width: 1180px;
+      --header-height: 76px;
+    }
+
+    /* Сброс */
+    :where(*, *::before, *::after) { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-body);
+      color: var(--color-text-dark);
+      background: var(--color-bg-white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { text-decoration: none; color: inherit; transition: color var(--transition); }
+    ul, ol { list-style: none; }
+    button, input, textarea { font-family: inherit; font-size: inherit; }
+
+    /* Фокус */
+    :focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+      border-radius: var(--radius-sm);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+
+    /* Утилиты */
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+    .section { padding: 96px 0; }
+    .section__title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 12px;
+      color: var(--color-primary);
+      letter-spacing: -0.02em;
+    }
+    .section__subtitle {
+      text-align: center;
+      font-size: 1.05rem;
+      color: var(--color-text-medium);
+      max-width: 640px;
+      margin: 0 auto 56px;
+    }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 14px 32px; border: none; border-radius: var(--radius-sm);
+      font-family: var(--font-heading); font-size: 0.95rem; font-weight: 700;
+      cursor: pointer; transition: all var(--transition); text-align: center;
+      gap: 8px;
+    }
+    .btn--primary {
+      background: var(--color-accent); color: #fff;
+      box-shadow: 0 2px 8px rgba(245, 124, 0, 0.25);
+    }
+    .btn--primary:hover { background: var(--color-accent-hover); transform: translateY(-1px); }
+    .btn--outline {
+      background: transparent; color: #fff;
+      border: 1.5px solid rgba(255,255,255,0.6);
+    }
+    .btn--outline:hover { background: #fff; color: var(--color-primary); border-color: #fff; }
+
+    /* Анимация появления */
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ============================================
+       ШАПКА И ЛОГОТИП
+       ============================================ */
+    .header {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+      background: rgba(255,255,255,0.96); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .header__inner { display: flex; align-items: center; justify-content: space-between; height: var(--header-height); }
+    
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo__icon { width: 42px; height: 42px; flex-shrink: 0; }
+    .logo__text {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--color-primary);
+      line-height: 1;
+    }
+    .logo__text span { color: var(--color-primary-light); }
+
+    .nav__list { display: flex; gap: 28px; }
+    .nav__link {
+      font-weight: 600; font-size: 0.9rem; color: var(--color-text-medium);
+      position: relative; padding-bottom: 4px;
+    }
+    .nav__link::after {
+      content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px;
+      background: var(--color-accent); transition: width var(--transition);
+    }
+    .nav__link:hover { color: var(--color-primary); }
+    .nav__link:hover::after { width: 100%; }
+    .header__phone { font-family: var(--font-heading); font-weight: 700; font-size: 0.95rem; color: var(--color-primary); }
+
+    .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 8px; }
+    .burger__line { width: 24px; height: 2px; background: var(--color-primary); border-radius: 2px; transition: all var(--transition); }
+    .burger.active .burger__line:nth-child(1) { transform: rotate(45deg) translate(4px, 5px); }
+    .burger.active .burger__line:nth-child(2) { opacity: 0; }
+    .burger.active .burger__line:nth-child(3) { transform: rotate(-45deg) translate(4px, -5px); }
+
+    /* ============================================
+       HERO
+       ============================================ */
+    .hero {
+      position: relative; min-height: 100vh; display: flex; align-items: center;
+      background: linear-gradient(135deg, #004D40 0%, #00695C 40%, #004D80 100%);
+      color: #fff; overflow: hidden; padding: calc(var(--header-height) + 40px) 0 80px;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(0,255,200,0.15) 0%, transparent 40%),
+                  radial-gradient(circle at 10% 90%, rgba(255,255,255,0.05) 0%, transparent 30%);
+      pointer-events: none;
+    }
+    .hero__content { position: relative; z-index: 2; max-width: 760px; }
+    .hero__badge {
+      display: inline-block; padding: 6px 16px; background: rgba(255,255,255,0.12);
+      border-radius: 50px; font-size: 0.8rem; font-weight: 600; margin-bottom: 20px;
+      border: 1px solid rgba(255,255,255,0.15); backdrop-filter: blur(4px);
+    }
+    .hero__title {
+      font-family: var(--font-heading); font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 800; line-height: 1.15; margin-bottom: 18px;
+      letter-spacing: -0.02em;
+    }
+    .hero__desc {
+      font-size: 1.1rem; line-height: 1.65; color: rgba(255,255,255,0.85);
+      margin-bottom: 32px; max-width: 580px;
+    }
+    .hero__actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 20px; }
+    .hero__micro { font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+
+    /* ============================================
+       СЕКЦИИ
+       ============================================ */
+    .about { background: var(--color-bg-light); }
+    .about__grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: center; }
+    .about__text p { font-size: 1rem; color: var(--color-text-medium); margin-bottom: 18px; }
+    .about__stats {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 28px;
+    }
+    .stat {
+      text-align: center; padding: 20px 12px; background: var(--color-bg-white);
+      border-radius: var(--radius-md); box-shadow: var(--shadow-sm); transition: transform var(--transition);
+    }
+    .stat:hover { transform: translateY(-3px); }
+    .stat__num { font-family: var(--font-heading); font-size: 1.75rem; font-weight: 800; color: var(--color-primary); display: block; }
+    .stat__label { font-size: 0.8rem; color: var(--color-text-light); margin-top: 4px; }
+    
+    .about__img {
+      border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg);
+      aspect-ratio: 4/3; background: linear-gradient(135deg, #00695C, #00897B);
+      display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.8);
+      font-size: 1rem; font-weight: 500;
+    }
+    .about__img img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+
+    /* Услуги */
+    .services__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+    .service {
+      background: var(--color-bg-white); border-radius: var(--radius-md); padding: 32px 24px;
+      border: 1px solid var(--color-border); transition: all var(--transition); position: relative;
+    }
+    .service:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); border-color: transparent; }
+    .service__icon {
+      width: 48px; height: 48px; border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+      display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-size: 1.25rem;
+    }
+    .service__title { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
+    .service__text { font-size: 0.9rem; color: var(--color-text-medium); line-height: 1.6; margin-bottom: 14px; }
+    .service__note {
+      display: inline-block; padding: 4px 12px; background: var(--color-bg-light);
+      border-radius: 50px; font-size: 0.75rem; font-weight: 600; color: var(--color-primary);
+    }
+
+    /* ============================================
+       НАШИ РЕШЕНИЯ (с фото)
+       ============================================ */
+    .features { background: var(--color-bg-light); }
+    .features__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+    }
+    .feature-card {
+      background: var(--color-bg-white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--color-border);
+      transition: all var(--transition);
+      position: relative;
+    }
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition);
+      z-index: 2;
+    }
+    .feature-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-6px);
+      border-color: transparent;
+    }
+    .feature-card:hover::before {
+      transform: scaleX(1);
+    }
+    
+    .feature-card__image {
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+    }
+    .feature-card__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .feature-card:hover .feature-card__image img {
+      transform: scale(1.05);
+    }
+    
+    .feature-card__body {
+      padding: 32px;
+    }
+    .feature-card__icon {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 1.75rem;
+      color: #fff;
+    }
+    .feature-card__title {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--color-primary);
+      line-height: 1.3;
+    }
+    .feature-card__text {
+      font-size: 0.95rem;
+      color: var(--color-text-medium);
+      line-height: 1.7;
+    }
+
+    /* ============================================
+       ФОРМА И ПОДВАЛ
+       ============================================ */
+    .contact { background: linear-gradient(135deg, #004D40 0%, #004D80 100%); color: #fff; position: relative; overflow: hidden; }
+    .contact .section__title { color: #fff; }
+    .contact .section__subtitle { color: rgba(255,255,255,0.75); }
+    .contact__wrapper { max-width: 520px; margin: 0 auto; position: relative; z-index: 2; }
+    .contact__form {
+      background: rgba(255,255,255,0.08); backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius-lg); padding: 36px 32px;
+    }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 6px; color: rgba(255,255,255,0.9); }
+    .form-group input, .form-group textarea {
+      width: 100%; padding: 12px 14px; border: 1px solid rgba(255,255,255,0.2);
+      border-radius: var(--radius-sm); background: rgba(255,255,255,0.06); color: #fff; transition: all var(--transition);
+    }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.4); }
+    .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--color-accent); background: rgba(255,255,255,0.1); }
+    .form-group textarea { resize: vertical; min-height: 90px; }
+    .contact__form .btn { width: 100%; padding: 14px; font-size: 1rem; }
+    .contact__privacy { text-align: center; font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-top: 12px; }
+    
+    .form-success { display: none; text-align: center; padding: 30px 20px; }
+    .form-success__icon { font-size: 2.5rem; margin-bottom: 12px; }
+    .form-success__title { font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; margin-bottom: 6px; }
+
+    .footer { background: #002825; color: rgba(255,255,255,0.5); padding: 32px 0; }
+    .footer__inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    
+    .footer__logo { display: flex; align-items: center; gap: 8px; }
+    .footer__logo .logo__icon { width: 32px; height: 32px; }
+    .footer__logo .logo__text { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 800; color: #fff; }
+
+    .footer__links { display: flex; gap: 20px; }
+    .footer__links a:hover { color: #fff; }
+    .footer__copy { font-size: 0.8rem; }
+
+    /* Адаптив */
+    @media (max-width: 900px) {
+      .about__grid { grid-template-columns: 1fr; gap: 32px; }
+      .about__img { order: -1; }
+    }
+    @media (max-width: 768px) {
+      .section { padding: 72px 0; }
+      .nav {
+        position: fixed; top: var(--header-height); left: 0; width: 100%; background: #fff;
+        box-shadow: var(--shadow-md); padding: 20px; transform: translateY(-120%); transition: transform var(--transition); z-index: 999;
+      }
+      .nav.open { transform: translateY(0); }
+      .nav__list { flex-direction: column; gap: 16px; }
+      .burger { display: flex; }
+      .header__phone { display: none; }
+      .hero { padding: 100px 0 60px; }
+      .hero__actions { flex-direction: column; }
+      .hero__actions .btn { width: 100%; }
+      .about__stats { grid-template-columns: repeat(2, 1fr); }
+      .contact__form { padding: 28px 20px; }
+      .footer__inner { flex-direction: column; text-align: center; }
+      .logo__icon { width: 36px; height: 36px; }
+      .feature-card__image { height: 200px; }
+    }
+    @media (max-width: 480px) {
+      .container { padding: 0 16px; }
+      .stat__num { font-size: 1.4rem; }
+      .hero__title { font-size: 1.85rem; }
+      .logo__icon { width: 32px; height: 32px; }
+      .feature-card__body { padding: 24px; }
+      .feature-card__image { height: 180px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ШАПКА -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      
+      <!-- ЛОГОТИП (SVG) -->
+      <a href="#" class="logo" aria-label="ВеТви — на главную">
+        <svg class="logo__icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#4DB6AC;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#00897B;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="dropOuterGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#80CBC4;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#26A69A;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="dropInnerGrad" x1="0%" y1="20%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#00796B;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#003333;stop-opacity:1" />
+            </linearGradient>
+          </defs>
+          <path d="M 10,10 L 90,10 L 90,55 Q 90,90 50,95 Q 10,90 10,55 Z" fill="url(#bgGrad)"/>
+          <path d="M 50,18 Q 78,45 78,62 Q 78,82 50,88 Q 22,82 22,62 Q 22,45 50,18" fill="#FFFFFF"/>
+          <path d="M 50,22 Q 75,47 75,63 Q 75,80 50,85 Q 25,80 25,63 Q 25,47 50,22" fill="url(#dropOuterGrad)"/>
+          <path d="M 50,28 Q 70,50 70,64 Q 70,78 50,82 Q 30,78 30,64 Q 30,50 50,28" fill="url(#dropInnerGrad)"/>
+          <path d="M 38,40 Q 38,60 42,72 Q 48,78 50,82" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.6"/>
+          <circle cx="62" cy="42" r="3.5" fill="#FFFFFF" opacity="0.7"/>
+        </svg>
+        <span class="logo__text">Ве<span>Тви</span></span>
+      </a>
+
+      <nav class="nav" id="nav" role="navigation" aria-label="Основная навигация">
+        <ul class="nav__list">
+          <li><a href="#about" class="nav__link">О компании</a></li>
+          <li><a href="#services" class="nav__link">Услуги</a></li>
+          <li><a href="#features" class="nav__link">Решения</a></li>
+          <li><a href="#contact" class="nav__link">Контакты</a></li>
+        </ul>
+      </nav>
+      <a href="tel:+79225086377" class="header__phone">+7 (922) 508-63-77</a>
+      <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false">
+        <span class="burger__line"></span><span class="burger__line"></span><span class="burger__line"></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="container">
+        <div class="hero__content fade-in">
+          <div class="hero__badge">🌿 Работаем с 2024 года</div>
+          <h1 class="hero__title">Автоматические системы полива в Удмуртской Республике</h1>
+          <p class="hero__desc">
+            Разрабатываем инженерные решения для частных участков и коммерческих территорий. 
+            Точный расчёт расхода воды, сертифицированное оборудование, гарантия 3 года на монтажные работы.
+          </p>
+          <div class="hero__actions">
+            <a href="#contact" class="btn btn--primary">Получить технический расчёт</a>
+            <a href="#features" class="btn btn--outline">Наши решения</a>
+          </div>
+          <p class="hero__micro">Выезд специалиста на объект — бесплатно</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- О КОМПАНИИ (С ФОТО) -->
+    <section class="section about" id="about">
+      <div class="container">
+        <h2 class="section__title fade-in">Компания «ВеТви»: инженерный подход к орошению</h2>
+        <div class="about__grid">
+          <div class="about__text fade-in">
+            <p>
+              С 2024 года мы проектируем и монтируем системы автоматического полива на территории Удмуртии. 
+              Наш метод основан на детальной диагностике участка: учитываем гидрологию, тип почв, рельеф 
+              и архитектурные особенности ландшафта.
+            </p>
+            <p>
+              Работаем по договору, предоставляем проектную документацию, акты выполненных работ 
+              и гарантийное обслуживание. Каждая система проходит пусконаладочные испытания перед сдачей заказчику.
+            </p>
+            <div class="about__stats">
+              <div class="stat fade-in"><span class="stat__num">80+</span><span class="stat__label">реализованных объектов</span></div>
+              <div class="stat fade-in"><span class="stat__num">2</span><span class="stat__label">года практики</span></div>
+              <div class="stat fade-in"><span class="stat__num">3 г.</span><span class="stat__label">гарантия</span></div>
+              <div class="stat fade-in"><span class="stat__num">97%</span><span class="stat__label">клиентов рекомендуют</span></div>
+            </div>
+          </div>
+          
+          <div class="about__img fade-in">
+            <img src="images/about-tank.jpg" 
+                 alt="Накопительная емкость и шкаф автоматики системы автополива ВеТви"
+                 loading="lazy"
+                 width="600"
+                 height="450">
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- УСЛУГИ -->
+    <section class="section services" id="services">
+      <div class="container">
+        <h2 class="section__title fade-in">Направления деятельности</h2>
+        <p class="section__subtitle fade-in">Полный цикл работ — от обследования участка до сезонного сопровождения. Стоимость рассчитывается индивидуально.</p>
+        <div class="services__grid">
+          <article class="service fade-in">
+            <div class="service__icon" aria-hidden="true">📐</div>
+            <h3 class="service__title">Проектирование</h3>
+            <p class="service__text">Обследование участка, разработка схем размещения дождевателей и магистралей, формирование спецификации и сметы.</p>
+            <span class="service__note">Бесплатно при заказе монтажа</span>
+          </article>
+          <article class="service fade-in">
+            <div class="service__icon" aria-hidden="true">🔧</div>
+            <h3 class="service__title">Монтаж</h3>
+            <p class="service__text">Земляные работы, прокладка труб, установка контроллеров и насосных станций, пусконаладка и восстановление ландшафта.</p>
+            <span class="service__note">Выполняется по договору</span>
+          </article>
+          <article class="service fade-in">
+            <div class="service__icon" aria-hidden="true">🛠️</div>
+            <h3 class="service__title">Обслуживание</h3>
+            <p class="service__text">Сезонный запуск и консервация, диагностика узлов, настройка программ полива, замена расходных материалов.</p>
+            <span class="service__note">Индивидуальный график</span>
+          </article>
+          <article class="service fade-in">
+            <div class="service__icon" aria-hidden="true">📱</div>
+            <h3 class="service__title">Умный полив</h3>
+            <p class="service__text">Интеграция датчиков влажности и метеомодулей, корректировка графика в реальном времени, управление через приложение.</p>
+            <span class="service__note">Опциональная интеграция</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- НАШИ РЕШЕНИЯ (С ФОТОГРАФИЯМИ) -->
+    <section class="section features" id="features">
+      <div class="container">
+        <h2 class="section__title fade-in">Наши решения</h2>
+        <p class="section__subtitle fade-in">Подбираем оптимальную систему под задачи вашего участка. Каждое решение проектируется индивидуально.</p>
+        
+        <div class="features__grid">
+          
+          <!-- Блок 1: Капельный полив с фото -->
+          <article class="feature-card fade-in">
+            <div class="feature-card__image">
+              <img src="images/drip-irrigation.jpg" 
+                   alt="Система капельного полива для грядок и теплиц"
+                   loading="lazy"
+                   width="400"
+                   height="220">
+            </div>
+            <div class="feature-card__body">
+              <div class="feature-card__icon" aria-hidden="true">💧</div>
+              <h3 class="feature-card__title">Капельный полив</h3>
+              <p class="feature-card__text">
+                Точечная подача воды непосредственно в корневую зону. Снижаем расход воды, 
+                предотвращаем ожоги листьев и развитие грибковых заболеваний. Идеально для грядок, 
+                плодовых деревьев, теплиц и участков со сложным рельефом. Каждый проект проектируется 
+                под тип почвы и потребности культур.
+              </p>
+            </div>
+          </article>
+
+          <!-- Блок 2: Дождевательное орошение с фото -->
+          <article class="feature-card fade-in">
+            <div class="feature-card__image">
+              <img src="images/sprinkler.jpg" 
+                   alt="Дождевальная система орошения газона"
+                   loading="lazy"
+                   width="400"
+                   height="220">
+            </div>
+            <div class="feature-card__body">
+              <div class="feature-card__icon" aria-hidden="true">🌦️</div>
+              <h3 class="feature-card__title">Дождевательное орошение</h3>
+              <p class="feature-card__text">
+                Современные системы, имитирующие естественные осадки. Обеспечивают равномерное покрытие 
+                больших территорий, интегрируются с метеодатчиками и управляются через приложение. 
+                Подходят для газонов, парковых зон, спортивных площадок и декоративных садов.
+              </p>
+            </div>
+          </article>
+
+          <!-- Блок 3: Укладка газона с фото -->
+          <article class="feature-card fade-in">
+            <div class="feature-card__image">
+              <img src="images/lawn.jpg" 
+                   alt="Профессиональная укладка рулонного газона"
+                   loading="lazy"
+                   width="400"
+                   height="220">
+            </div>
+            <div class="feature-card__body">
+              <div class="feature-card__icon" aria-hidden="true">🌱</div>
+              <h3 class="feature-card__title">Укладка газона</h3>
+              <p class="feature-card__text">
+                Полный цикл работ: нивелировка рельефа, устройство дренажа, подготовка плодородного слоя, 
+                укладка рулонного или посевного газона. Используем сертифицированные травосмеси, 
+                адаптированные под климат региона. Гарантия приживаемости + инструкция по уходу 
+                и настройка автополива в подарок.
+              </p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ФОРМА ОБРАТНОЙ СВЯЗИ (FormSubmit.co) -->
+    <section class="section contact" id="contact">
+      <div class="container">
+        <h2 class="section__title fade-in">Запрос на проектирование или консультацию</h2>
+        <p class="section__subtitle fade-in">Оставьте контактные данные. Инженер свяжется с вами в течение 15 минут для уточнения параметров объекта.</p>
+        <div class="contact__wrapper fade-in">
+          
+          <!-- Форма отправляет данные на FormSubmit.co → ваша почта sssubarik666@mail.ru -->
+          <form class="contact__form" id="contactForm" action="https://formsubmit.co/sssubarik666@mail.ru" method="POST">
+            
+            <!-- === НАСТРОЙКИ FORMSUBMIT (не удалять) === -->
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_subject" value="🔔 Новая заявка с сайта ВеТви">
+            <input type="hidden" name="_next" value="https://masalceva91-blip.github.io/vetvi-site/">
+            <input type="hidden" name="_autoresponse" value="Спасибо! Ваша заявка принята. Инженер свяжется с вами в течение 15 минут.">
+            <!-- === КОНЕЦ НАСТРОЕК === -->
+
+            <div class="form-group">
+              <label for="name">ФИО</label>
+              <input type="text" id="name" name="Имя" placeholder="Иванов Иван Иванович" required autocomplete="name">
+            </div>
+            <div class="form-group">
+              <label for="phone">Контактный телефон</label>
+              <input type="tel" id="phone" name="Телефон" placeholder="+7 (___) ___-__-__" required autocomplete="tel">
+            </div>
+            <div class="form-group">
+              <label for="message">Комментарий <span style="opacity:0.5">(необязательно)</span></label>
+              <textarea id="message" name="Сообщение" placeholder="Площадь участка, район республики, тип растений…" rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary" id="submitBtn">Отправить запрос</button>
+            <p class="contact__privacy">🔒 Данные защищены и используются исключительно для обработки заявки</p>
+          </form>
+
+          <!-- Сообщение об успехе (показывается после отправки) -->
+          <div class="form-success" id="formSuccess">
+            <div class="form-success__icon">✅</div>
+            <h3 class="form-success__title">Запрос принят</h3>
+            <p class="form-success__text">Инженер свяжется с вами в течение 15 минут. Спасибо за обращение.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ПОДВАЛ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      
+      <div class="footer__logo">
+        <svg class="logo__icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="bgGradF" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#4DB6AC;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#00897B;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="dropOuterGradF" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#80CBC4;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#26A69A;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="dropInnerGradF" x1="0%" y1="20%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#00796B;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#003333;stop-opacity:1" />
+            </linearGradient>
+          </defs>
+          <path d="M 10,10 L 90,10 L 90,55 Q 90,90 50,95 Q 10,90 10,55 Z" fill="url(#bgGradF)"/>
+          <path d="M 50,18 Q 78,45 78,62 Q 78,82 50,88 Q 22,82 22,62 Q 22,45 50,18" fill="#FFFFFF"/>
+          <path d="M 50,22 Q 75,47 75,63 Q 75,80 50,85 Q 25,80 25,63 Q 25,47 50,22" fill="url(#dropOuterGradF)"/>
+          <path d="M 50,28 Q 70,50 70,64 Q 70,78 50,82 Q 30,78 30,64 Q 30,50 50,28" fill="url(#dropInnerGradF)"/>
+          <path d="M 38,40 Q 38,60 42,72 Q 48,78 50,82" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.6"/>
+          <circle cx="62" cy="42" r="3.5" fill="#FFFFFF" opacity="0.7"/>
+        </svg>
+        <span class="logo__text">Ве<span>Тви</span></span>
+      </div>
+
+      <nav class="footer__links" aria-label="Дополнительная навигация">
+        <a href="#services">Услуги</a>
+        <a href="#features">Решения</a>
+        <a href="#contact">Контакты</a>
+      </nav>
+      <p class="footer__copy">© 2026 ВеТви. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    const burger = document.getElementById('burger');
+    const nav = document.getElementById('nav');
+    burger.addEventListener('click', () => {
+      const isOpen = nav.classList.toggle('open');
+      burger.classList.toggle('active');
+      burger.setAttribute('aria-expanded', isOpen);
+    });
+    nav.querySelectorAll('.nav__link').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('open');
+        burger.classList.remove('active');
+        burger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (!target) return;
+        e.preventDefault();
+        const offset = document.getElementById('header').offsetHeight;
+        window.scrollTo({ top: target.getBoundingClientRect().top + window.pageYOffset - offset, behavior: 'smooth' });
+      });
+    });
+
+    const fadeEls = document.querySelectorAll('.fade-in');
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      fadeEls.forEach(el => observer.observe(el));
+    } else { fadeEls.forEach(el => el.classList.add('visible')); }
+
+    // Обработка формы - FormSubmit обрабатывает сам, этот код для показа сообщения
+    const form = document.getElementById('contactForm');
+    const btn = document.getElementById('submitBtn');
+    const success = document.getElementById('formSuccess');
+    
+    // FormSubmit сам обрабатывает отправку, мы только показываем сообщение
+    // После успешной отправки FormSubmit перенаправит на _next или покажет autoresponse
+    
+  </script>
+</body>
+</html>
